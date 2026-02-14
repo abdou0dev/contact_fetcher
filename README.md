@@ -21,3 +21,4 @@ and more...
 ## Requirements
 pyperclip
 install with "sudo apt install python3-pyperclip" or "pip install pyperclip"
+Or use contact_fetcher2.py
