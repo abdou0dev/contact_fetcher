@@ -1,11 +1,5 @@
 import re, os, sys
-try:
-    import pyperclip
-except ModuleNotFoundError:
-    print("pyperclip module is not installed, please install with:\n'sudo apt install python3-pyperclip' or 'pip install pyperclip'\nOr run contact_fetcher2.py")
-IS_WAYLAND = sys.platform.startswith('linux') and os.environ.get('XDG_SESSION_TYPE') == 'wayland'
-if IS_WAYLAND:
-    pyperclip.set_clipboard('wl-clipboard')
+
 # Phone number pattern
 phone_pattern = re.compile(r'''
 (\+\d{1,3}-|\+\d{1,3}\s|00\d{1,3}\s)? # country code
@@ -18,9 +12,9 @@ phone_pattern = re.compile(r'''
 email_pattern = re.compile(r'\b[^\s@"]+@[^\s@\.]+\.[^\s@]+\b')
 
 def main():
-    
+    message = input('Enter text: ')
     # Matching phone numbers.
-    number_match = phone_pattern.findall(pyperclip.paste())
+    number_match = phone_pattern.findall(message)
     # Extracting phone numbers into one format.
     cleaned = []
     if number_match:
@@ -41,7 +35,7 @@ def main():
         print('No phone numbers found.')
 
     # Matching Emails.
-    email_match = email_pattern.findall(pyperclip.paste())
+    email_match = email_pattern.findall(message)
     if email_match:
         # Printing Emails
         print('Email addresses: ')
@@ -49,10 +43,6 @@ def main():
             print(' ' + email) 
     else:
         print('No emails found.')
-    
-    pyperclip.copy('\n\n'.join(cleaned + email_match))
-    print('Done')
-    
-    
+
 main()
 

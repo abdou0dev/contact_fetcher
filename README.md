@@ -17,7 +17,7 @@ A tiny clipboard utility that extracts email addresses and US phone numbers from
 and more...
 ### Finds email addresses
 ### Takes text from clipboard
-Uses wl-clipboard
 
 ## Requirements
-Linux with Wayland
+pyperclip
+install with "sudo apt install python3-pyperclip" or "pip install pyperclip"
